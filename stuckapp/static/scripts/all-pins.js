@@ -29,6 +29,24 @@ document.addEventListener('DOMContentLoaded', function() {
         { coords: [53.38, -1.46], message: "Construction Zone", severity: 3, time: "14:20" },
         { coords: [53.39, -1.48], message: "Dimly Lit Path", severity: 2, time: "21:00" }
     ];
+
+    const ISSUES = [];
+
+    function getIssues() {
+        $.ajax({
+            url: '/get_issues',
+            method: 'POST',
+            success: (result) => {console.log(result); ISSUES.push(...result);},
+            error: function(error) {
+                console.error('Error fetching issues:', error);
+            }
+        });
+    }
+
+    getIssues();
+    console.log(ISSUES);
+
+
     
     // 3. Loop and Add Pins
     places.forEach(p => {
