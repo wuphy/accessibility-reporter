@@ -1,13 +1,27 @@
+let allMarkers = [];
+let map; 
+
+function filterMarkers(severityLevel) {
+    console.log("Filtering for:", severityLevel); // Debugging
+    allMarkers.forEach(marker => {
+        if (severityLevel === 'all' || marker.severity == severityLevel) {
+            marker.addTo(map);
+        } else {
+            map.removeLayer(marker);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-    const map = L.map('map').setView([53.38, -1.47], 12);
+    // Assign map to the global variable
+    map = L.map('map').setView([53.38, -1.47], 12);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // 1. Setup the Color/Severity Mapping
     const getIcon = (severity) => {
-        let color = 'blue'; // Default
+        let color = 'blue';
         if (severity === 1) color = 'green';
         if (severity === 2) color = 'gold';
         if (severity === 3) color = 'red';
@@ -22,8 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 
-    // 2. The Array of Objects
-    // In Flask, you'd inject this with: const places = {{ pins_data | tojson }};
     const places = [
         { coords: [53.3752, -1.4721], message: "Missing dropped curb", severity: 2, time: "2026-02-22 08:15" },
         { coords: [53.3825, -1.4650], message: "Broken elevator at station", severity: 3, time: "2026-02-22 09:30" },
@@ -48,30 +60,12 @@ document.addEventListener('DOMContentLoaded', function () {
         { coords: [53.3815, -1.4590], message: "Signage blocking pathway", severity: 1, time: "2026-02-22 21:30" }
     ];
 
-    const ISSUES = [];
-
-    function getIssues() {
-        $.ajax({
-            url: '/get_issues',
-            method: 'POST',
-            success: (result) => { console.log(result); ISSUES.push(...result); },
-            error: function (error) {
-                console.error('Error fetching issues:', error);
-            }
-        });
-    }
-
-    getIssues();
-    console.log(ISSUES);
-
-    // 3. Loop and Add Pins
     places.forEach(p => {
-        const marker = L.marker(p.coords, { icon: getIcon(p.severity) }).addTo(map);
+        const marker = L.marker(p.coords, { icon: getIcon(p.severity) });
+        
+        marker.severity = p.severity; // Store for filtering
 
-        // Tooltip shows the message on hover
         marker.bindTooltip(`<b>${p.message}</b>`);
-
-        // Popup shows full details on click
         marker.bindPopup(`
             <div style="font-family: sans-serif;">
                 <strong>Message:</strong> ${p.message}<br>
@@ -79,40 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <strong>Severity:</strong> ${p.severity}/3
             </div>
         `);
-    });
-    // 1. Create a global array to store marker objects
-    let allMarkers = [];
-
-    // 2. Modified Loop
-    places.forEach(p => {
-        const marker = L.marker(p.coords, { icon: getIcon(p.severity) });
-
-        // Attach the severity to the marker object so we can find it later
-        marker.severity = p.severity;
 
         marker.addTo(map);
-        marker.bindTooltip(`<b>${p.message}</b>`);
-        marker.bindPopup(`
-        <div style="font-family: sans-serif;">
-            <strong>Message:</strong> ${p.message}<br>
-            <strong>Reported:</strong> ${p.time}<br>
-            <strong>Severity:</strong> ${p.severity}/3
-        </div>
-    `);
-        // Add to our tracker array
         allMarkers.push(marker);
     });
-
-    // 3. The Filter Function
-    function filterMarkers(severityLevel) {
-        allMarkers.forEach(marker => {
-            // If 'all' is selected, or the level matches, show it. Otherwise, hide it.
-            if (severityLevel === 'all' || marker.severity == severityLevel) {
-                marker.addTo(map);
-            } else {
-                map.removeLayer(marker);
-            }
-        });
-    }
-
 });
