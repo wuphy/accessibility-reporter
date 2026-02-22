@@ -5,29 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Add pins
-    const places = [
-    { name: "Sheffield Park", coords: [53.3811, -1.4701] },
-    { name: "Work", coords: [53.38, -1.46] }
-    ];
-
-    places.forEach(p => {
-    L.marker(p.coords)
-        .addTo(map)
-        .bindPopup(p.name);
-    });
+    const myMarker = L.marker([53.38, -1.47]);
 
     map.on('click', function(e) {
-        const marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-        marker.bindPopup(
+        myMarker.setLatLng(e.latlng).addTo(map);
+        // const marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+        myMarker.bindPopup(
         `Lat: ${e.latlng.lat.toFixed(5)}<br>Lng: ${e.latlng.lng.toFixed(5)}`
         ).openPopup();      
     });
-
-    map.on('click', function(e) {
-    const marker = L.marker(e.latlng).addTo(map);
-    marker.on('click', function() {
-        map.removeLayer(marker);
-    });
-});
 });
