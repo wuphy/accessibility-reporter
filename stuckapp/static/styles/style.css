@@ -70,7 +70,7 @@
     .button1 { background-color: green; border-color: green; color: #fff; }
     .button2 { background-color: yellow; border-color: yellow; color: #0f0f0f; }
     .button3 { background-color: red; border-color: red; color: #fff; }
-    .button4 { background-color: #242424; border-color: #242424; color: #fff; }
+    .button4 { background-color: #242424; border-color: #242424; color: #fff; width: 100%;}
 
     .button1:hover { background-color: #004d00; border-color: #004d00; color: #fff; }
     .button2:hover { background-color: #b3b300; border-color: #b3b300; color: #0f0f0f; }
