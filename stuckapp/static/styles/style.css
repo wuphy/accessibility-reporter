@@ -10,18 +10,24 @@
     }
 
     body {
-      background: var(--bg);
+      background: black;
       color: var(--text);
       font-family: 'DM Mono', monospace;
       min-height: 100vh;
       display: flex;
+      margin: 0;  
+      padding: 0; 
       justify-content: center;
       align-items: flex-start;
       padding: 48px 16px;
+      overflow: hidden;
     }
 
     .phone-layout {
+      background-color: var(--bg);
       width: 100%;
+      padding: 2rem;
+      border-radius: 2rem;
       max-width: 390px;
       display: flex;
       flex-direction: column;
@@ -64,10 +70,12 @@
     .button1 { background-color: green; border-color: green; color: #fff; }
     .button2 { background-color: yellow; border-color: yellow; color: #0f0f0f; }
     .button3 { background-color: red; border-color: red; color: #fff; }
+    .button4 { background-color: #242424; border-color: #242424; color: #fff; }
 
     .button1:hover { background-color: #004d00; border-color: #004d00; color: #fff; }
     .button2:hover { background-color: #b3b300; border-color: #b3b300; color: #0f0f0f; }
     .button3:hover { background-color: #8b0000; border-color: #8b0000; color: #fff; }
+    .button4:hover { background-color: black; border-color: black; color: #fff; }
 
     button:active {
       transform: scale(0.96);
@@ -81,7 +89,7 @@
 
     textarea {
       width: 100%;
-      min-height: 200px;
+      min-height: 100px;  
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -100,7 +108,7 @@
     }
 
     textarea:focus {
-      border-color: var(--accent);
+      border-color: grey;
     }
 
     .label {
@@ -110,4 +118,19 @@
       color: var(--muted);
       margin-bottom: -8px;
     }
-   
+
+    .nav-bar {
+      display: flex;
+      background-color: #333;
+      margin-top: 23rem;
+    }
+    .nav-bar a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      flex: 1;
+    }
+    .nav-bar a:hover {
+      background-color: #555;
+    }
