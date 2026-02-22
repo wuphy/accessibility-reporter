@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById("locationInput").setAttribute("value", coordinates);
 
-        if (!locationSelected) {
+        if (locationSelected == "false") {
             alert("Please select a location on the map before submitting.");
             return;
         }
