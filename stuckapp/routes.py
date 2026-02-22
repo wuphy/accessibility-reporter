@@ -3,7 +3,7 @@ from flask import render_template, url_for, flash, redirect, request
 from stuckapp import db
 from stuckapp.models import Issue
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
     submitted = False
     if request.method == 'POST':
@@ -11,6 +11,12 @@ def index():
         severity = request.form.get('severity')
         details = request.form.get('details')
         location = request.form.get('location')
+
+        print(request.form)
+
+        print("Severity:", severity)
+        print("Details:", details)
+        print("Location:", location)
 
         # add issue to database
         new_issue = Issue(severity=severity, description=details, location=location)

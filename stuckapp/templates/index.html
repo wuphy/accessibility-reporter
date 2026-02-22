@@ -6,38 +6,44 @@
     <title>Home page</title>
     <link rel="stylesheet" href="../static/styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body>
     <!-- <h1>Home Page</h1> -->
     <div class = "phone-layout">
-        <form action="/">
-            <div>
+        <form id="mainForm" action="/" method="post">
+        <div>
             <p class = "label">Press below depending on the severity</p>
-            </div>
-
-            <div class = "button-row">
-            <button class="button button1">Green</button>
-            <button class="button button2">Yellow</button>
-            <button class="button button3">Red</button>
-            </div>
-    
-            <div>
-            <p class = "label">Details</p>
-            </div>
-    
-            <textarea placeholder = "Text here...."></textarea>
-    
-            <button class="button button4">Submit</button>
-        </form>
-
-        <iframe src="{{ url_for('map') }}" name="test" height="480px" width="100%">You need a Frames Capable browser to view this content.</iframe>   
-
-        <div class = "nav-bar">
-            <a href = "#home" class = "active">Home</a>
-            <a href = "#reports">Reports</a>
         </div>
-    </div>
-  
+        
+        <div id="button-row" class="button-row">
+            <button id="green" class="button button1">Green</button>
+            <button id="yellow" class="button button2">Yellow</button>
+            <button id="red" class="button button3">Red</button>
+        </div>
 
+        <input id="severityInput" style="display:none;" type="text" name="severity" value="">
+        <input id="locationInput" style="display:none;" type="text" name="location" value="">
+            
+
+        <div>
+            <p class = "label">Details</p>
+        </div>
+        
+        <textarea placeholder = "Text here...." name="details"></textarea>
+        
+        <button class="button button4" type="submit">Submit</button>
+        </form>
+    
+    <iframe src="{{ url_for('map') }}" name="test" height="480px" width="100%" id="mapIframe">You need a Frames Capable browser to view this content.</iframe>   
+    
+    <div class = "nav-bar">
+        <a href = "#home" class = "active">Home</a>
+        <a href = "#reports">Reports</a>
+    </div>
+</div>
+
+
+<script src="../static/scripts/script.js"></script>
 </body>
 </html>
