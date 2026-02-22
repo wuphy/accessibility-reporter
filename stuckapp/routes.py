@@ -2,6 +2,7 @@ from stuckapp import app
 from flask import render_template, url_for, flash, redirect, request
 from stuckapp import db
 from stuckapp.models import Issue
+import time
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -42,7 +43,8 @@ def get_issues():
         issues_data.append({
             "severity": issue.severity,
             "message": issue.description,
-            "coords": issue.location
+            "coords": issue.location,
+            "time": time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         })
     
     return {"issues": issues_data}
