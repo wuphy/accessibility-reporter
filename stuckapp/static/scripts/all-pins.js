@@ -73,21 +73,23 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Received issues:", issues); // Debugging
         issues.issues.forEach(p => {
             console.log("Drawing pin for:", p); // Debugging
-            const marker = L.marker(JSON.parse(p.coords), { icon: getIcon(p.severity) });
-            
-            marker.severity = p.severity; // Store for filtering
+            if (p.coords != "null") {
+                const marker = L.marker(JSON.parse(p.coords), { icon: getIcon(p.severity) });
+                
+                marker.severity = p.severity; // Store for filtering
 
-            marker.bindTooltip(`<b>${p.message}</b>`);
-            marker.bindPopup(`
-                <div style="font-family: sans-serif;">
-                    <strong>Message:</strong> ${p.message}<br>
-                    <strong>Reported:</strong> ${p.time}<br>
-                    <strong>Severity:</strong> ${p.severity}/3
-                </div>
-            `);
+                marker.bindTooltip(`<b>${p.message}</b>`);
+                marker.bindPopup(`
+                    <div style="font-family: sans-serif;">
+                        <strong>Message:</strong> ${p.message}<br>
+                        <strong>Reported:</strong> ${p.time}<br>
+                        <strong>Severity:</strong> ${p.severity}/3
+                    </div>
+                `);
 
-            marker.addTo(map);
-            allMarkers.push(marker);
+                marker.addTo(map);
+                allMarkers.push(marker);    
+            }
         });
     }
 

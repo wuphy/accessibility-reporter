@@ -20,7 +20,7 @@
       justify-content: center;
       align-items: flex-start;
       padding: 48px 16px;
-      overflow: hidden;
+      overflow: scroll;
     }
 
     .phone-layout {
@@ -138,4 +138,10 @@
     .selected {
         border: 2px solid #333;
         /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); */
+    }
+
+    .locationSelected {
+        background-color: purple;
+        color: whitesmoke;
+        border: 3px solid darkpurple;
     }
