@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>STUCK.</title>
+    <title>Leaflet Map with Pins</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <style>
@@ -15,12 +15,12 @@
             padding: 0;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 
 <body>
     <script src="../static/scripts/all-pins.js"></script>
-    <div id="controls" style="padding: 10px; background: white; border-bottom: 1px solid #ccc; position: absolute; z-index: 1000; right: 0px; font-family: 'DM Mono', monospace;">
+    <div id="controls"
+        style="padding: 10px; background: white; border-bottom: 1px solid #ccc; position: absolute; z-index: 1000; right: 0px; font-family: 'DM Mono', monospace;">
         <strong>Filter by Severity:</strong>
         <select id="severityFilter" onchange="filterMarkers(this.value)" style="padding: 5px; border-radius: 4px;">
             <option value="all">Show All</option>
@@ -30,6 +30,27 @@
         </select>
     </div>
     <div id="map"></div>
+    <a href="/" style="
+        position: absolute; 
+        bottom: 48px; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        z-index: 1000; 
+        padding: 12px 24px;
+        background-color: #242424; border-color: #242424; color: #fff; 
+        border-radius: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        font-family: 'DM Mono', monospace;
+        font-size: 24pt;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;">
+        Home
+    </a>
 </body>
 
 </html>
