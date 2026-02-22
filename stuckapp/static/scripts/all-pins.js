@@ -60,6 +60,39 @@ document.addEventListener('DOMContentLoaded', function () {
         { coords: [53.3815, -1.4590], message: "Signage blocking pathway", severity: 1, time: "2026-02-22 21:30" }
     ];
 
+    function getIssues() {
+        $.ajax({
+            url: '/get_issues',
+            method: 'POST',
+            success: (result) => {drawPins(result)},
+            error: (error) => {console.error("Error fetching issues:", error);}
+        });
+    }
+
+    function drawPins(issues) {
+        console.log("Received issues:", issues); // Debugging
+        issues.issues.forEach(p => {
+            console.log("Drawing pin for:", p); // Debugging
+            const marker = L.marker(JSON.parse(p.coords), { icon: getIcon(p.severity) });
+            
+            marker.severity = p.severity; // Store for filtering
+
+            marker.bindTooltip(`<b>${p.message}</b>`);
+            marker.bindPopup(`
+                <div style="font-family: sans-serif;">
+                    <strong>Message:</strong> ${p.message}<br>
+                    <strong>Reported:</strong> ${p.time}<br>
+                    <strong>Severity:</strong> ${p.severity}/3
+                </div>
+            `);
+
+            marker.addTo(map);
+            allMarkers.push(marker);
+        });
+    }
+
+    getIssues();
+
     places.forEach(p => {
         const marker = L.marker(p.coords, { icon: getIcon(p.severity) });
         
