@@ -72,7 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function drawPins(issues) {
         console.log("Received issues:", issues); // Debugging
         issues.issues.forEach(p => {
-            const marker = L.marker(p.coords, { icon: getIcon(p.severity) });
+            console.log("Drawing pin for:", p); // Debugging
+            const marker = L.marker(JSON.parse(p.coords), { icon: getIcon(p.severity) });
             
             marker.severity = p.severity; // Store for filtering
 
