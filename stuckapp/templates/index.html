@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 </head>
 <body>
@@ -27,15 +27,14 @@
 
         <textarea placeholder = "Text here...."></textarea>
 
-         <button class="button button4">Submit</button>
+        <button class="button button4">Submit</button>
 
-         <iframe src="test.html" name="test" height="480px" width="100%">You need a Frames Capable browser to view this content.</iframe>   
+        <iframe src="{{ url_for('map') }}" name="test" height="480px" width="100%">You need a Frames Capable browser to view this content.</iframe>   
 
         <div class = "nav-bar">
             <a href = "#home" class = "active">Home</a>
             <a href = "#reports">Reports</a>
-        </div> -->
-        <iframe src="{{ url_for('map') }}" name="test" height="480px" width="100%">You need a Frames Capable browser to view this content.</iframe>   
+        </div>
     </div>
   
 
