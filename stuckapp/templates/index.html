@@ -10,24 +10,27 @@
 <body>
     <!-- <h1>Home Page</h1> -->
     <div class = "phone-layout">
+        <form action="/">
+            <div>
+            <p class = "label">Press below depending on the severity</p>
+            </div>
+            
+            
 
-        <div>
-        <p class = "label">Press below depending on the severity</p>
-        </div>
-
-        <div class = "button-row">
-        <button class="button button1">Green</button>
-        <button class="button button2">Yellow</button>
-        <button class="button button3">Red</button>
-        </div>
-
-        <div>
-        <p class = "label">Details</p>
-        </div>
-
-        <textarea placeholder = "Text here...."></textarea>
-
-        <button class="button button4">Submit</button>
+            <div class = "button-row">
+            <button class="button button1">Green</button>
+            <button class="button button2">Yellow</button>
+            <button class="button button3">Red</button>
+            </div>
+    
+            <div>
+            <p class = "label">Details</p>
+            </div>
+    
+            <textarea placeholder = "Text here...."></textarea>
+    
+            <button class="button button4">Submit</button>
+        </form>
 
         <iframe src="{{ url_for('map') }}" name="test" height="480px" width="100%">You need a Frames Capable browser to view this content.</iframe>   
 
