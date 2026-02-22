@@ -134,3 +134,8 @@
     .nav-bar a:hover {
       background-color: #555;
     }
+
+    .selected {
+        border: 2px solid #333;
+        /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); */
+    }
