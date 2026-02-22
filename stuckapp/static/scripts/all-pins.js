@@ -60,6 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
         { coords: [53.3815, -1.4590], message: "Signage blocking pathway", severity: 1, time: "2026-02-22 21:30" }
     ];
 
+    function getIssues() {
+        
+    }
+
     places.forEach(p => {
         const marker = L.marker(p.coords, { icon: getIcon(p.severity) });
         

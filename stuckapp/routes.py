@@ -41,8 +41,8 @@ def get_issues():
     for issue in issues:
         issues_data.append({
             "severity": issue.severity,
-            "description": issue.description,
-            "location": issue.location
+            "message": issue.description,
+            "coords": issue.location
         })
     
     return {"issues": issues_data}
